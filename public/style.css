@@ -1,3 +1,12 @@
+/* 1. Ensure the container respects the device height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents double scrolling on the whole page */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +18,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .title {
@@ -19,11 +30,9 @@ body {
 .main {
   width: 100%;
   max-width: 420px;
-  height: 85vh; /* ✅ stable height */
-
+  height: 85vh;
   display: flex;
   flex-direction: column;
-
   border: 6px solid #ddd;
   border-radius: 20px;
   overflow: hidden;
@@ -38,6 +47,7 @@ body {
   padding: 10px;
   color: #7e7e7e;
   background-color: #ebebeb;
+  flex-shrink: 0; /* Keeps header from squishing */
 }
 
 .name-input {
@@ -55,7 +65,7 @@ body {
 .message-container {
   flex-grow: 1;
   overflow-y: auto;
-  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   background-color: #f6f6f6;
   padding: 10px;
 }
@@ -70,20 +80,18 @@ body {
   list-style: none;
   padding: 10px;
   margin: 8px;
-  max-width: 75%;
+  max-width: 80%;
   font-size: 16px;
   word-wrap: break-word;
-  display: block; /* IMPORTANT */
+  clear: both; /* Ensures messages don't overlap side-by-side */
 }
 
-/* LEFT */
 .message-left {
   background-color: #fff;
   margin-right: auto;
   border-radius: 20px 20px 20px 0;
 }
 
-/* RIGHT */
 .message-right {
   background-color: #2d2d2d;
   color: #fff;
@@ -99,19 +107,13 @@ body {
   margin-top: 4px;
 }
 
-/* TYPING */
-.feedback {
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
 /* INPUT AREA */
 .message-form {
   display: flex;
   width: 100%;
   background: #fff;
+  flex-shrink: 0; /* Keeps footer at bottom */
+  border-top: 1px solid #ddd;
 }
 
 .message-input {
@@ -126,34 +128,46 @@ body {
 .send-btn {
   height: 50px;
   font-size: 16px;
+  font-weight: bold;
   background-color: #fff;
+  color: #007bff;
   border: none;
-  padding: 0 15px;
+  padding: 0 20px;
   cursor: pointer;
 }
-
-.v-divider {
-  width: 1px;
-  background-color: #ddd;
-}
-
-/* CLIENT TEXT */
-.client-total {
-  margin: 10px 0;
-  color: #7e7e7e;
-}
-
-/* 📱 MOBILE FIX */
+/* 📱 MOBILE FIX - Updated to show title and client count */
 @media (max-width: 480px) {
+  body {
+    justify-content: flex-start; /* Aligns content to top */
+    background-color: #fff; /* Matches app background for seamless look */
+  }
+
+  .title {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+
+  .client-total {
+    font-size: 12px;
+    margin: 2px 0 8px 0;
+  }
+
   .main {
-    height: 100vh; /* ✅ full screen */
-    border-radius: 0; /* ✅ app-like UI */
-    border: none;
+    /* Using dvh to ensure the input isn't hidden by the browser URL bar */
+    height: 80dvh;
+    width: 95%; /* Leaves a tiny bit of breathing room on the sides */
+    border: 2px solid #ddd;
+    border-radius: 15px;
   }
 
   .message-left,
   .message-right {
-    max-width: 80%;
+    max-width: 85%;
     font-size: 14px;
+  }
+
+  /* Fixes the "zoom-in" bug on iPhones when clicking the input */
+  .message-input {
+    font-size: 16px;
   }
 }
