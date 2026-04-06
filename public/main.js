@@ -35,18 +35,22 @@ socket.on("chat-message", (data) => {
 function addMessageToUi(isOwnMessage, data) {
   clearFeedback();
 
-  const element = ` 
-    <li class="${isOwnMessage ? "message-right" : "message-left"}">
-      <p class="message">
-        ${data.message}
-        <span>${data.name} 🔵 ${new Date(data.dateTime).toLocaleTimeString()}</span>
-      </p>
-    </li>`;
+  const li = document.createElement("li");
+  li.classList.add(isOwnMessage ? "message-right" : "message-left");
 
-  messageContainer.innerHTML += element;
+  const p = document.createElement("p");
+  p.classList.add("message");
+
+  p.innerHTML = `
+    ${data.message}
+    <span>${data.name} 🔵 ${new Date(data.dateTime).toLocaleTimeString()}</span>
+  `;
+
+  li.appendChild(p);
+  messageContainer.appendChild(li);
+
   scrollToBottom();
 }
-
 function scrollToBottom() {
   messageContainer.scrollTop = messageContainer.scrollHeight;
 }
