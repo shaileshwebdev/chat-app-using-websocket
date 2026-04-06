@@ -10,8 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  padding: 10px;
+  min-height: 100vh;
 }
 
 .title {
@@ -22,7 +21,7 @@ body {
 .main {
   width: 100%;
   max-width: 420px;
-  height: 90vh;
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   border: 6px solid #ddd;
@@ -148,8 +147,9 @@ body {
 /* 📱 MOBILE FIX */
 @media (max-width: 480px) {
   .main {
-    height: 95vh;
-    border-radius: 10px;
+    height: 100vh; /* ✅ full screen */
+    border-radius: 0; /* ✅ app-like UI */
+    border: none;
   }
 
   .message-left,
