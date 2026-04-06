@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ebebeb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 10px;
+}
+
+.title {
+  margin: 10px 0;
+}
+
+/* MAIN CHAT BOX */
+.main {
+  border: 9px solid #dddddd;
+  border-radius: 20px;
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 420px; /* important */
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAME SECTION */
+.name {
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 10px;
+  color: #7e7e7e;
+  background-color: #ebebeb;
+}
+
+.name-input {
+  font-size: 18px;
+  font-weight: 700;
+  color: #7e7e7e;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  margin: 0 10px;
+  background-color: #ebebeb;
+}
+
+/* MESSAGE AREA */
+.message-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f6f6f6;
+  padding: 10px;
+}
+
+.message-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* MESSAGES */
+.message-left,
+.message-right {
+  list-style: none;
+  padding: 10px;
+  margin: 8px;
+  max-width: 75%;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.message-left {
+  border-radius: 20px 20px 20px 0;
+  align-self: flex-start;
+  background-color: #fff;
+  box-shadow: -2px 2px 4px #dcdcdc;
+}
+
+.message-right {
+  border-radius: 20px 20px 0 20px;
+  align-self: flex-end;
+  background-color: #2d2d2d;
+  box-shadow: 2px 2px 4px #dcdcdc;
+  color: #f6f6f6;
+}
+
+.message-left p span,
+.message-right p span {
+  display: block;
+  font-style: italic;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* TYPING */
+.feedback {
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/* INPUT AREA */
+.message-form {
+  display: flex;
+  width: 100%;
+}
+
+.message-input {
+  flex-grow: 1;
+  height: 50px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+}
+
+.send-btn {
+  height: 50px;
+  font-size: 16px;
+  background-color: #fff;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.v-divider {
+  width: 1px;
+  background-color: #ddd;
+}
+
+/* CLIENT TEXT */
+.client-total {
+  margin: 10px 0;
+  color: #7e7e7e;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 480px) {
+  .main {
+    height: 95vh;
+    border-width: 5px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .message-left,
+  .message-right {
+    font-size: 14px;
+    max-width: 85%;
+  }
+
+  .message-input {
+    font-size: 14px;
+  }
+}
